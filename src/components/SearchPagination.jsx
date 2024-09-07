@@ -26,7 +26,7 @@ export default function SearchPagination({
     }
   };
   return (
-    <>
+    <div className="search">
       <input
         type="text"
         placeholder="Entrer votre recherche"
@@ -44,6 +44,7 @@ export default function SearchPagination({
           <button onClick={handlePrevPage} disabled={page === 1}>
             &lt;
           </button>
+          <p>{page}</p>
           <button
             onClick={handleNextPage}
             disabled={page === totalPages || totalPages === 0}
@@ -58,6 +59,6 @@ export default function SearchPagination({
           </button>
         </nav>
       )}
-    </>
+    </div>
   );
 }

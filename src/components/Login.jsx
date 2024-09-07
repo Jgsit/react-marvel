@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login({ closeModal, isFromFavoris, setUser }) {
+function Login({ closeModal, isFromFavoris, setUser, openSignupModal }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -71,14 +71,14 @@ function Login({ closeModal, isFromFavoris, setUser }) {
               placeholder="Mot de passe"
             />
           </label>
-          <span className="signup-login-error-message">{errorMessage}</span>
+          <span>{errorMessage}</span>
           <button type="submit" disabled={isLoading ? true : false}>
             Se connecter
           </button>
-          <button type="button" onClick={closeModal}>
-            Fermer
-          </button>
         </form>
+        <button type="button" onClick={openSignupModal}>
+          Pas encore de compte ? Inscrit-toi !
+        </button>
       </div>
     </div>
   );

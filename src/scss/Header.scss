@@ -1,0 +1,42 @@
+header {
+  background-color: $rouge;
+  padding: 10px;
+  .wrapper {
+    background-color: $rouge;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    img {
+      height: 100px;
+      width: auto;
+      margin: 0px 20px;
+    }
+    nav {
+      display: flex;
+      gap: 30px;
+      a {
+        padding: 10px;
+        border-radius: 5px;
+        &:hover {
+          background-color: $gris;
+          color: #f0f0f0;
+        }
+      }
+      button {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: $rouge;
+        &:hover {
+          cursor: pointer;
+          background-color: $gris;
+          color: #f0f0f0;
+        }
+      }
+      .connection {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+}

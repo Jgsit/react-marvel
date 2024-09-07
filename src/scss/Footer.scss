@@ -1,0 +1,29 @@
+footer {
+  color: whitesmoke;
+  background-color: $gris;
+  height: fit-content;
+  .container {
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  p {
+    text-align: center;
+    a {
+      font-weight: 700;
+      &[href="https://fr.legacy.reactjs.org"]:hover
+      {
+        color: #58c4dc;
+      }
+      &[href="https://www.lereacteur.io"]:hover
+      {
+        color: #5c47d3;
+      }
+      &[href="https://github.com/Jgsit"]:hover
+      {
+        color: #01d758;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 export default function Card({ data, token, openLoginModal, setIsModified }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -25,34 +26,6 @@ export default function Card({ data, token, openLoginModal, setIsModified }) {
       setIsFavorite(false);
     }
   }, [isFavorite, token, data]);
-  /*
-  const handleFavorite = (e) => {
-    e.preventDefault();
-
-    const favoriteCharacters = Cookies.get("favorites")
-      ? Cookies.get("favorites").split(" ")
-      : [];
-
-    let updatedFavorites = [];
-    if (favoriteCharacters.includes(data._id)) {
-      for (let i = 0; i < favoriteCharacters.length; i++) {
-        if (favoriteCharacters[i] !== data._id) {
-          updatedFavorites[i] = favoriteCharacters[i];
-        }
-      }
-      setIsFavorite(false);
-    } else {
-      for (let i = 0; i < favoriteCharacters.length; i++) {
-        updatedFavorites[i] = favoriteCharacters[i];
-      }
-      updatedFavorites.push(data._id);
-      setIsFavorite(true);
-    }
-    Cookies.set("favorites", updatedFavorites, { expires: 7 }); // 7 jours d'expiration
-    console.log(
-      `${data.name} ${isFavorite ? "retiré des" : "ajouté aux"} favoris.`
-    );
-  };*/
 
   const handleFavorite = async (e) => {
     e.preventDefault();
@@ -88,7 +61,7 @@ export default function Card({ data, token, openLoginModal, setIsModified }) {
       <p>{data.description}</p>
       <img src={`${data.picture}`} alt={data.name || data.title} />
       <div className="favorite" onClick={handleFavorite}>
-        {isFavorite ? "❤️" : "♡"}
+        {isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
       </div>
     </article>
   );

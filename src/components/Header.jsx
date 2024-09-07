@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import logo from "../assets/MarvelLogo.png";
 
 export default function Header({
   openLoginModal,
@@ -23,12 +24,14 @@ export default function Header({
     <header>
       <div className="container">
         <div className="wrapper">
-          <Link to="/">
-            <img alt="Le logo marvel" />
-          </Link>
-          <nav>
+          <nav className="pages">
             <Link to="/">Personnages</Link>
             <Link to="/comics">Comics</Link>
+          </nav>
+          <Link to="/">
+            <img src={logo} alt="Le logo marvel" />
+          </Link>
+          <nav>
             <button onClick={handleRedirectFavoris}>Favoris</button>
             <div className="connection">
               {token ? (
