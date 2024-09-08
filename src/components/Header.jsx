@@ -31,7 +31,7 @@ export default function Header({ setIsFromFavoris, token, setToken }) {
             </button>
             <div className="connection">
               {token ? (
-                <button onClick={handleDeconnect}>Se deconnecter</button>
+                <button onClick={handleDeconnect}>Déconnexion</button>
               ) : (
                 <>
                   <Link to="/login">Se connecter</Link>
