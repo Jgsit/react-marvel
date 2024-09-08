@@ -50,10 +50,10 @@ function Favoris({ setIsFromFavoris, token }) {
                   </span> et <span>Comics</span>.
                 </p>
                 <div className="redirect-card">
-                  <Link to={"/"}>
+                  <Link to={"/"} className="personnages">
                     <article className="personnages"></article>
                   </Link>
-                  <Link to={"/comics"}>
+                  <Link to={"/comics"} className="comics">
                     <article className="comics"></article>
                   </Link>
                 </div>

@@ -39,6 +39,9 @@ export default function Personnage() {
             {data.data.character.description}
           </span>
         </div>
+        <h2 className="find">
+          Retrouve {data.data.character.name} dans les comics suivant :
+        </h2>
         <div className="card-wrapper comics-card">
           {data.data.comics.map((comic) => {
             return <Card key={comic._id} data={comic} />;

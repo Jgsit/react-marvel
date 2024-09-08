@@ -154,10 +154,6 @@
       transform: scale(1.3);
     }
   }
-  &:hover .background-gradient:not(:hover) {
-    transform: scale(0.8);
-    filter: blur(10px);
-  }
 }
 
 .loading-screen {
@@ -224,6 +220,17 @@
       &::after {
         filter: blur(30px);
       }
+      &.comics {
+        &::after,
+        a::before {
+          background-image: conic-gradient(
+            from var(--angle),
+            #71ff95,
+            #71c4ff,
+            #71ff95
+          );
+        }
+      }
     }
     article {
       z-index: 1;
@@ -247,12 +254,16 @@
     .personnages {
       background-image: url("./assets/spider-man.jpg");
       &:hover {
+        transform: scale(1.2);
+        z-index: 2;
         background-image: url("./assets/perso-preview.png");
       }
     }
     .comics {
       background-image: url("./assets/civil-war.jpg");
       &:hover {
+        transform: scale(1.2);
+        z-index: 2;
         background-image: url("./assets/comics-preview.png");
       }
     }
@@ -265,4 +276,10 @@
   &:hover {
     cursor: default;
   }
+}
+
+.find {
+  font-size: 25px;
+  text-align: center;
+  margin: 20px 0;
 }
