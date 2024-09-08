@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaHeartBroken } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 export default function Card({ data, token, setIsModified }) {
@@ -64,7 +64,14 @@ export default function Card({ data, token, setIsModified }) {
       <p>{data.description || "Pas de description disponible"}</p>
       {<img src={`${data.picture}`} alt={data.name || data.title} />}
       <div className="favorite" onClick={handleFavorite}>
-        {isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
+        {isFavorite ? (
+          <>
+            <FaHeart color="red" className="active" />{" "}
+            <FaHeartBroken className="hidden" />
+          </>
+        ) : (
+          <FaRegHeart />
+        )}
       </div>
     </article>
   );

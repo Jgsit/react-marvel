@@ -47,11 +47,56 @@
   flex-wrap: wrap;
   gap: 50px;
   a {
-    height: 487px;
+    height: 430px;
     width: 250px;
   }
+  .background-gradient {
+    position: relative;
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 7px;
+      --angle: 0deg;
+      background-image: conic-gradient(
+        from var(--angle),
+        #ed201f,
+        #e4005a,
+        #5600ef,
+        #001bf1,
+        #5600ef,
+        #e4005a,
+        #ed201f
+      );
+      animation: autoRotate 2s linear infinite;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      padding: 5px;
+      box-sizing: unset;
+    }
+    &::after {
+      filter: blur(25px);
+    }
+    &.comics {
+      &::after,
+      a::before {
+        background-image: conic-gradient(
+          from var(--angle),
+          #71ff95,
+          #71c4ff,
+          #71ff95
+        );
+      }
+    }
+  }
   article {
-    height: 487px;
+    z-index: 1;
+    background-color: $gris;
+    height: 430px;
     width: 250px;
     position: relative;
     border: 5px solid $rougeClair;
@@ -61,14 +106,24 @@
     align-items: center;
     gap: 20px;
     padding: 20px;
+    transition: 0.5s;
     h2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      padding-bottom: 5px;
       font-size: 30px;
       text-align: center;
     }
     p {
-      padding-bottom: 3px;
-      max-height: 147px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
       overflow: hidden;
+      padding-bottom: 3px;
     }
     img {
       position: absolute;
@@ -80,11 +135,28 @@
       position: absolute;
       top: 10px;
       right: 10px;
+      .hidden {
+        display: none;
+      }
       &:hover {
         color: $rouge;
         cursor: pointer;
+        .hidden {
+          display: inline;
+        }
+        .active {
+          display: none;
+        }
       }
     }
+    &:hover {
+      z-index: 2;
+      transform: scale(1.3);
+    }
+  }
+  &:hover .background-gradient:not(:hover) {
+    transform: scale(0.8);
+    filter: blur(10px);
   }
 }
 
@@ -125,7 +197,36 @@
     display: flex;
     justify-content: center;
     gap: 50px;
+    a {
+      position: relative;
+      &::after,
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 7px;
+        --angle: 0deg;
+        background-image: conic-gradient(
+          from var(--angle),
+          #ea2dd8,
+          #001bf1,
+          #ea2dd8
+        );
+        animation: autoRotate 2s linear infinite;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        padding: 5px;
+        box-sizing: unset;
+      }
+      &::after {
+        filter: blur(30px);
+      }
+    }
     article {
+      z-index: 1;
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;

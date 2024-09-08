@@ -51,9 +51,13 @@ export default function Comics({ token }) {
           search={comicSearch}
           isBottom={false}
         />
-        <div className="card-wrapper comics-card">
+        <div className="card-wrapper">
           {data.data.result.map((comic) => {
-            return <Card key={comic._id} data={comic} token={token} />;
+            return (
+              <div className="background-gradient comics" key={comic._id}>
+                <Card data={comic} token={token} />
+              </div>
+            );
           })}
         </div>
         <SearchPagination

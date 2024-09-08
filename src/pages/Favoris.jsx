@@ -75,7 +75,11 @@ function Favoris({ setIsFromFavoris, token }) {
                       isCharacter = true;
                     }
                     return isCharacter ? (
-                      <Link key={favori._id} to={`/personnage/${favori._id}`}>
+                      <Link
+                        className="background-gradient"
+                        key={favori._id}
+                        to={`/personnage/${favori._id}`}
+                      >
                         {
                           <Card
                             token={token}
@@ -90,7 +94,10 @@ function Favoris({ setIsFromFavoris, token }) {
                         }
                       </Link>
                     ) : (
-                      <div key={favori._id}>
+                      <div
+                        className="background-gradient comics"
+                        key={favori._id}
+                      >
                         {
                           <Card
                             token={token}

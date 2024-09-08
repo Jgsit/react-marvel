@@ -33,8 +33,12 @@ export default function Personnage() {
     <main>
       <div className="container">
         <h1>{data.data.character.name}</h1>
-        <img src={data.data.character.picture} alt="" />
-        <p>{data.data.character.description}</p>
+        <div style={{ display: "flex", justifyContent: "center", gap: 30 }}>
+          <img src={data.data.character.picture} alt="" />
+          <span style={{ width: "20vw" }}>
+            {data.data.character.description}
+          </span>
+        </div>
         <div className="card-wrapper comics-card">
           {data.data.comics.map((comic) => {
             return <Card key={comic._id} data={comic} />;

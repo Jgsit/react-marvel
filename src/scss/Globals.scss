@@ -12,6 +12,16 @@ $grisClair: #c0c0c0;
   font-style: normal;
 }
 
+@property --angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+@keyframes autoRotate {
+  to {
+    --angle: 360deg;
+  }
+}
 .container {
   background-color: $gris;
   border-radius: 10px;

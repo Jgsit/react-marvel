@@ -40,7 +40,7 @@ function Login({ isFromFavoris, setUser }) {
   return (
     <main>
       <div className="container connection-page">
-        <h2>Connexion</h2>
+        <h1>Connexion</h1>
         <form onSubmit={handleSubmit}>
           <div className="email">
             <label>Email:</label>

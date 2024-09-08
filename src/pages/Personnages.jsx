@@ -55,7 +55,11 @@ export default function Personnages({ token }) {
         <div className="card-wrapper characters-card">
           {data.data.result.map((character) => {
             return (
-              <Link key={character._id} to={`/personnage/${character._id}`}>
+              <Link
+                className="background-gradient"
+                key={character._id}
+                to={`/personnage/${character._id}`}
+              >
                 <Card data={character} token={token} />
               </Link>
             );

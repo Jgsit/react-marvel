@@ -47,7 +47,7 @@ function Signup({ setUser, isFromFavoris }) {
   return (
     <main>
       <div className="container connection-page">
-        <h2>S'inscrire</h2>
+        <h1>S'inscrire</h1>
         <form onSubmit={handleSubmit} className="signup-form">
           <div className="pseudo">
             <label>Pseudo:</label>
