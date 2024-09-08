@@ -15,8 +15,6 @@ function Login({ isFromFavoris, setUser }) {
     try {
       e.preventDefault();
       setIsLoading(true);
-      console.log(`${import.meta.env.VITE_API_URL}/user/login`);
-
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/user/login`,
         { email: email, password: password }
