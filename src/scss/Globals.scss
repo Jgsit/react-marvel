@@ -1,10 +1,12 @@
 $rouge: #ed201f;
-$gris: #070707;
-$grisClair: #2c2c2c;
+$rougeClair: #ee293a;
+$noir: #070707;
+$gris: #2c2c2c;
+$grisClair: #c0c0c0;
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&display=swap");
 
 #root {
-  background-color: black;
+  background-color: $noir;
   font-family: "M PLUS 1", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -12,21 +14,26 @@ $grisClair: #2c2c2c;
 
 .container {
   background-color: $gris;
+  border-radius: 10px;
   width: 70vw;
   margin: 0 auto;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 button {
   border: none;
 }
+
 main {
   margin: 50px 0;
   padding: 0px 50px;
-  color: white;
+  color: whitesmoke;
 }
+
 h1 {
   font-size: 50px;
   text-align: center;

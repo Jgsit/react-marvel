@@ -58,7 +58,7 @@ export default function Card({ data, token, openLoginModal, setIsModified }) {
   return (
     <article>
       <h2>{data.name || data.title}</h2>
-      <p>{data.description}</p>
+      <p>{data.description || "Pas de description disponible"}</p>
       <img src={`${data.picture}`} alt={data.name || data.title} />
       <div className="favorite" onClick={handleFavorite}>
         {isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
