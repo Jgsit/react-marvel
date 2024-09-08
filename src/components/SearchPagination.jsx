@@ -4,6 +4,7 @@ export default function SearchPagination({
   totalPages,
   setSearch,
   search,
+  isBottom,
 }) {
   const handlePrevPage = () => {
     if (page > 1) {
@@ -27,15 +28,17 @@ export default function SearchPagination({
   };
   return (
     <div className="search">
-      <input
-        type="text"
-        placeholder="Entrer votre recherche"
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setPage(1);
-        }}
-      />
+      {!isBottom && (
+        <input
+          type="text"
+          placeholder="Entrer votre recherche"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
+        />
+      )}
       {totalPages !== 1 && totalPages !== 0 && (
         <nav>
           <button onClick={handleFirstPage} disabled={page === 1}>

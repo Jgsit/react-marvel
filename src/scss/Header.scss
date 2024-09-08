@@ -7,6 +7,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 50px;
+
     img {
       height: 100px;
       width: auto;
@@ -24,9 +25,14 @@ header {
         }
       }
       button {
+        font-family: "M PLUS 1", sans-serif;
+        font-size: 16px;
+        line-height: 16px;
         padding: 10px;
         border-radius: 5px;
         background-color: $rouge;
+        height: 36px;
+        align-self: center;
         &:hover {
           cursor: pointer;
           background-color: $gris;
@@ -35,7 +41,23 @@ header {
       }
       .connection {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 10px;
+        button {
+          font-family: "M PLUS 1", sans-serif;
+          font-size: 16px;
+          line-height: 16px;
+          padding: 10px;
+          border-radius: 5px;
+          background-color: $rouge;
+          &:hover {
+            cursor: pointer;
+            background-color: $gris;
+            color: #f0f0f0;
+          }
+        }
       }
     }
   }

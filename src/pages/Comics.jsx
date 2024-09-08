@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import SearchPagination from "../components/SearchPagination";
 
-export default function Comics({ token, openLoginModal }) {
+export default function Comics({ token }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [comicSearch, setComicSearch] = useState("");
@@ -31,7 +31,11 @@ export default function Comics({ token, openLoginModal }) {
   }, [page, comicSearch]);
 
   return isLoading ? (
-    <p>Loading ...</p>
+    <main>
+      <div className="container">
+        <div className="loading-screen">Loading ...</div>
+      </div>
+    </main>
   ) : (
     <main>
       <div className="container">
@@ -42,19 +46,19 @@ export default function Comics({ token, openLoginModal }) {
           totalPages={totalPages}
           setSearch={setComicSearch}
           search={comicSearch}
+          isBottom={false}
         />
         <div className="card-wrapper comics-card">
           {data.data.result.map((comic) => {
-            return (
-              <Card
-                key={comic._id}
-                data={comic}
-                token={token}
-                openLoginModal={openLoginModal}
-              />
-            );
+            return <Card key={comic._id} data={comic} token={token} />;
           })}
         </div>
+        <SearchPagination
+          setPage={setPage}
+          page={page}
+          totalPages={totalPages}
+          isBottom={true}
+        />
       </div>
     </main>
   );

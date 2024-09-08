@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-export default function Card({ data, token, openLoginModal, setIsModified }) {
+export default function Card({ data, token, setIsModified }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isCharacter, setIsCharacter] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
@@ -51,7 +54,7 @@ export default function Card({ data, token, openLoginModal, setIsModified }) {
         console.log(error);
       }
     } else {
-      openLoginModal();
+      navigate("/login");
     }
   };
 
@@ -59,7 +62,7 @@ export default function Card({ data, token, openLoginModal, setIsModified }) {
     <article>
       <h2>{data.name || data.title}</h2>
       <p>{data.description || "Pas de description disponible"}</p>
-      <img src={`${data.picture}`} alt={data.name || data.title} />
+      {<img src={`${data.picture}`} alt={data.name || data.title} />}
       <div className="favorite" onClick={handleFavorite}>
         {isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
       </div>

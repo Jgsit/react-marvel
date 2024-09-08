@@ -24,7 +24,11 @@ export default function Personnage() {
   }, [id]);
 
   return isLoading ? (
-    <p>Loading ...</p>
+    <main>
+      <div className="container">
+        <div className="loading-screen">Loading ...</div>
+      </div>
+    </main>
   ) : (
     <main>
       <div className="container">

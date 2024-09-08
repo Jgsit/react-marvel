@@ -1,0 +1,109 @@
+.connection-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  justify-content: space-between;
+  h2 {
+    text-align: center;
+    font-size: 25px;
+    justify-self: start;
+    margin-bottom: 30px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      svg {
+        display: none;
+      }
+    }
+    input,
+    button {
+      all: unset;
+      padding: 10px;
+      border-radius: 15px;
+      background-color: #1c1c1e;
+      box-shadow: 0 10px 30px #0005;
+      border: 2px solid #71717188;
+      transition: background-image 0.5s, opacity 0.5s, border 0.5s;
+    }
+    button {
+      background-color: #f0f0f0;
+      color: #1c1c1e;
+      cursor: pointer;
+    }
+    input {
+      color: whitesmoke;
+    }
+    .email input {
+      &:invalid:not(:placeholder-shown) {
+        border-color: red;
+        & + svg {
+          display: block;
+          position: absolute;
+          top: calc(79px / 2 + 5.5px);
+          right: 10px;
+          color: red;
+        }
+      }
+      &:valid:not(:placeholder-shown) {
+        border-color: green;
+        & + svg {
+          display: block;
+          position: absolute;
+          top: calc(79px / 2 + 5.5px);
+          right: 10px;
+          color: green;
+        }
+      }
+    }
+    .password input {
+      &:invalid:not(:placeholder-shown) {
+        border-color: #a20e0e;
+        & + svg {
+          display: block;
+          position: absolute;
+          top: calc(79px / 2 + 5.5px);
+          right: 84px;
+          color: #a20e0e;
+        }
+        & ~ p {
+          color: #a20e0e;
+        }
+      }
+      &:valid:not(:placeholder-shown) {
+        border-color: green;
+        & + svg {
+          display: block;
+          position: absolute;
+          top: calc(79px / 2 + 5.5px);
+          right: 84px;
+          color: green;
+        }
+      }
+    }
+    span {
+      color: #a20e0e;
+    }
+  }
+  button {
+    all: unset;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #1c1c1e;
+    box-shadow: 0 10px 30px #0005;
+    border: 2px solid #71717188;
+    transition: background-image 0.5s, opacity 0.5s, border 0.5s;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+  }
+}

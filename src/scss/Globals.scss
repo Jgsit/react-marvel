@@ -32,6 +32,10 @@ main {
   margin: 50px 0;
   padding: 0px 50px;
   color: whitesmoke;
+  .container {
+    min-height: calc(100vh - 337px);
+    padding-bottom: 30px;
+  }
 }
 
 h1 {

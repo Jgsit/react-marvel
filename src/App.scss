@@ -1,7 +1,7 @@
 @import "./scss/Globals.scss";
 @import "./scss/Header.scss";
 @import "./scss/Footer.scss";
-@import "./scss/Modal.scss";
+@import "./scss/Form.scss";
 
 .search {
   display: flex;
@@ -9,23 +9,33 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
-  input {
-    width: 350px;
-    height: 30px;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    padding: 0px 10px;
-    background-color: $grisClair;
-    color: whitesmoke;
+  input,
+  button {
+    all: unset;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #1c1c1e;
+    box-shadow: 0 10px 30px #0005;
+    border: 2px solid #71717188;
+    transition: background-image 0.5s, opacity 0.5s, border 0.5s;
+    text-align: center;
   }
   nav {
     display: flex;
     gap: 15px;
     p {
-      padding: 5px 10px;
-      background-color: $grisClair;
+      padding: 10px 10px;
+      background-color: #1c1c1e;
       border-radius: 5px;
+      box-shadow: 0 10px 30px #0005;
+      border: 2px solid #71717188;
+    }
+    button {
+      cursor: pointer;
+      &:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
     }
   }
 }
@@ -75,5 +85,83 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.loading-screen {
+  min-height: calc(100vh - 337px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.favoris-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  input {
+    all: unset;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #1c1c1e;
+    box-shadow: 0 10px 30px #0005;
+    border: 2px solid #71717188;
+    transition: background-image 0.5s, opacity 0.5s, border 0.5s;
+    text-align: center;
+  }
+}
+
+.no-favoris {
+  p {
+    text-align: center;
+    line-height: 30px;
+    span {
+      font-weight: 700;
+    }
+  }
+  .redirect-card {
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    article {
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 500px;
+      width: 325px;
+      position: relative;
+      border: 5px solid $rougeClair;
+      border-radius: 5px;
+      h2 {
+        position: absolute;
+        font-size: 30px;
+        color: black;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .personnages {
+      background-image: url("./assets/spider-man.jpg");
+      &:hover {
+        background-image: url("./assets/perso-preview.png");
+      }
+    }
+    .comics {
+      background-image: url("./assets/civil-war.jpg");
+      &:hover {
+        background-image: url("./assets/comics-preview.png");
+      }
+    }
+  }
+}
+
+.favoris-comics-card {
+  cursor: default;
+  color: black;
+  &:hover {
+    cursor: default;
   }
 }

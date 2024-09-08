@@ -1,14 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Card from "../components/Card";
-import SearchPagination from "../components/SearchPagination";
 
 function Favoris({ setIsFromFavoris, token }) {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [isModified, setIsModified] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -16,10 +13,11 @@ function Favoris({ setIsFromFavoris, token }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/user/favoris?token=${token}`
+          `${
+            import.meta.env.VITE_API_URL
+          }/user/favoris?token=${token}&name=${search}`
         );
         setData(response);
-        setTotalPages(Math.ceil(response.data.count / 100));
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -28,59 +26,95 @@ function Favoris({ setIsFromFavoris, token }) {
     fetchData();
     setIsFromFavoris(false);
     setIsModified(false);
-  }, [isModified]);
+  }, [isModified, search]);
 
   return token ? (
     <main>
       <div className="container">
         {isLoading ? (
-          <p>Loading ...</p>
-        ) : (
-          <>
-            <h1>Favoris</h1>
-            <SearchPagination
-              setPage={setPage}
-              page={page}
-              totalPages={totalPages}
-              setSearch={setSearch}
-              search={search}
-            />
-            <div className="card-wrapper">
-              {data.data.favoris.map((favori) => {
-                let isCharacter = false;
-                if (favori.name) {
-                  isCharacter = true;
-                }
-                return (
-                  <Card
-                    key={favori._id}
-                    token={token}
-                    data={
-                      isCharacter
-                        ? {
-                            name: favori.name,
-                            description: favori.description,
-                            picture: favori.picture,
-                            _id: favori._id,
-                          }
-                        : {
-                            title: favori.title,
-                            description: favori.description,
-                            picture: favori.picture,
-                            _id: favori._id,
-                          }
-                    }
-                    setIsModified={setIsModified}
-                  />
-                );
-              })}
+          <main>
+            <div className="container">
+              <div className="loading-screen">Loading ...</div>
             </div>
-          </>
+          </main>
+        ) : (
+          <div className="favoris-page">
+            <h1>Favoris</h1>
+            {data.data.count === 0 ? (
+              <div className="no-favoris">
+                <p>
+                  Il semblerai que tu n'es pas encore de favoris.
+                  <br />
+                  Tu peux en ajouter sur les pages <span>
+                    Personnages
+                  </span> et <span>Comics</span>.
+                </p>
+                <div className="redirect-card">
+                  <Link to={"/"}>
+                    <article className="personnages"></article>
+                  </Link>
+                  <Link to={"/comics"}>
+                    <article className="comics"></article>
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  placeholder="Entrer votre recherche"
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                />
+                <div className="card-wrapper">
+                  {data.data.favoris.map((favori) => {
+                    let isCharacter = false;
+                    if (favori.name) {
+                      isCharacter = true;
+                    }
+                    return isCharacter ? (
+                      <Link key={favori._id} to={`/personnage/${favori._id}`}>
+                        {
+                          <Card
+                            token={token}
+                            data={{
+                              name: favori.name,
+                              description: favori.description,
+                              picture: favori.picture,
+                              _id: favori._id,
+                            }}
+                            setIsModified={setIsModified}
+                          />
+                        }
+                      </Link>
+                    ) : (
+                      <div key={favori._id}>
+                        {
+                          <Card
+                            token={token}
+                            data={{
+                              title: favori.title,
+                              description: favori.description,
+                              picture: favori.picture,
+                              _id: favori._id,
+                            }}
+                            setIsModified={setIsModified}
+                          />
+                        }
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+          </div>
         )}
       </div>
     </main>
   ) : (
-    <Navigate to="/" state={{ fromFavoris: true }} />
+    <Navigate to="/login" state={{ fromFavoris: true }} />
   );
 }
 

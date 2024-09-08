@@ -11,13 +11,11 @@ import Header from "./components/Header";
 import Personnage from "./pages/Personnage";
 import Footer from "./components/Footer";
 import { useState } from "react";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Favoris from "./pages/Favoris";
 
 function App() {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignupModal, setShowSignupModal] = useState(false);
   const [isFromFavoris, setIsFromFavoris] = useState(false);
   const [token, setToken] = useState(Cookies.get("token") || null);
 
@@ -31,44 +29,16 @@ function App() {
     }
   };
 
-  const openLoginModal = () => {
-    setShowLoginModal(true);
-    setShowSignupModal(false);
-    document.body.style.overflow = "hidden";
-  };
-
-  const openSignupModal = () => {
-    setShowSignupModal(true);
-    setShowLoginModal(false);
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeModals = () => {
-    setShowLoginModal(false);
-    setShowSignupModal(false);
-    document.body.style.overflow = "unset";
-  };
-
   return (
     <Router>
       <Header
-        openLoginModal={openLoginModal}
-        openSignupModal={openSignupModal}
         setIsFromFavoris={setIsFromFavoris}
         token={token}
         setToken={setToken}
       />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Personnages token={token} openLoginModal={openLoginModal} />
-          }
-        />
-        <Route
-          path="/comics"
-          element={<Comics token={token} openLoginModal={openLoginModal} />}
-        />
+        <Route path="/" element={<Personnages token={token} />} />
+        <Route path="/comics" element={<Comics token={token} />} />
         <Route path="/personnage/:id" element={<Personnage />} />
         <Route
           path="/favoris"
@@ -76,23 +46,16 @@ function App() {
             <Favoris setIsFromFavoris={setIsFromFavoris} token={token} />
           }
         />
+        <Route
+          path="/login"
+          element={<Login isFromFavoris={isFromFavoris} setUser={setUser} />}
+        />
+        <Route
+          path="/signup"
+          element={<Signup setUser={setUser} isFromFavoris={isFromFavoris} />}
+        />
       </Routes>
       <Footer />
-      {showLoginModal && (
-        <Login
-          closeModal={closeModals}
-          isFromFavoris={isFromFavoris}
-          openSignupModal={openSignupModal}
-          setUser={setUser}
-        />
-      )}
-      {showSignupModal && (
-        <Signup
-          closeModal={closeModals}
-          setUser={setUser}
-          openLoginModal={openLoginModal}
-        />
-      )}
     </Router>
   );
 }

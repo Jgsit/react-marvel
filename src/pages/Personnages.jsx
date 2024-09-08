@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import { Link } from "react-router-dom";
 import SearchPagination from "../components/SearchPagination";
 
-export default function Personnages({ token, openLoginModal }) {
+export default function Personnages({ token }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [characterSearch, setCharacterSearch] = useState("");
@@ -32,7 +32,11 @@ export default function Personnages({ token, openLoginModal }) {
   }, [page, characterSearch]);
 
   return isLoading ? (
-    <p>Loading ...</p>
+    <main>
+      <div className="container">
+        <div className="loading-screen">Loading ...</div>
+      </div>
+    </main>
   ) : (
     <main>
       <div className="container">
@@ -43,20 +47,23 @@ export default function Personnages({ token, openLoginModal }) {
           totalPages={totalPages}
           setSearch={setCharacterSearch}
           search={characterSearch}
+          isBottom={false}
         />
         <div className="card-wrapper characters-card">
           {data.data.result.map((character) => {
             return (
               <Link key={character._id} to={`/personnage/${character._id}`}>
-                <Card
-                  data={character}
-                  token={token}
-                  openLoginModal={openLoginModal}
-                />
+                <Card data={character} token={token} />
               </Link>
             );
           })}
         </div>
+        <SearchPagination
+          setPage={setPage}
+          page={page}
+          totalPages={totalPages}
+          isBottom={true}
+        />
       </div>
     </main>
   );

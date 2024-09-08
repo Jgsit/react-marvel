@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaCheckCircle } from "react-icons/fa";
 
-function Signup({ closeModal, setUser, openLoginModal }) {
+function Signup({ setUser, isFromFavoris }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     try {
@@ -20,7 +24,11 @@ function Signup({ closeModal, setUser, openLoginModal }) {
       );
       if (response.data) {
         setUser(response.data.token);
-        closeModal();
+        if (isFromFavoris) {
+          navigate("/favoris");
+        } else {
+          navigate("/");
+        }
       } else {
         alert("Une erreur est survenue, veuillez réssayer.");
       }
@@ -37,22 +45,12 @@ function Signup({ closeModal, setUser, openLoginModal }) {
   };
 
   return (
-    <div
-      className="modal-root"
-      onClick={() => {
-        closeModal();
-      }}
-    >
-      <div
-        className="modal"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
+    <main>
+      <div className="container connection-page">
         <h2>S'inscrire</h2>
         <form onSubmit={handleSubmit} className="signup-form">
-          <label>
-            Pseudo:
+          <div className="pseudo">
+            <label>Pseudo:</label>
             <input
               value={username}
               onChange={(event) => {
@@ -60,10 +58,11 @@ function Signup({ closeModal, setUser, openLoginModal }) {
               }}
               placeholder="Nom d'utilisateur"
               type="text"
+              required
             />
-          </label>
-          <label>
-            Email:
+          </div>
+          <div className="email">
+            <label>Email:</label>
             <input
               value={email}
               onChange={(event) => {
@@ -72,10 +71,11 @@ function Signup({ closeModal, setUser, openLoginModal }) {
               }}
               placeholder="Adresse email"
               type="email"
+              required
             />
-          </label>
-          <label>
-            Mot de passe:
+          </div>
+          <div className="password">
+            <label>Mot de passe:</label>
             <input
               value={password}
               onChange={(event) => {
@@ -83,16 +83,24 @@ function Signup({ closeModal, setUser, openLoginModal }) {
               }}
               placeholder="Mot de passe"
               type="password"
+              minLength="6"
+              required
             />
-          </label>
+            <FaCheckCircle size={22} />
+            <p>Le mot de passe doit faire au moins 6 symboles de long</p>
+          </div>
           <span>{errorMessage}</span>
           <button type="submit">S'inscrire</button>
         </form>
-        <button onClick={openLoginModal}>
+        <button
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
           Tu as déjà un compte ? Connecte-toi !
         </button>
       </div>
-    </div>
+    </main>
   );
 }
 
