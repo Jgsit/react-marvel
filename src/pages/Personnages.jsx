@@ -14,13 +14,16 @@ export default function Personnages({ token }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/characters`, {
-          params: {
-            skip: 100 * (page - 1),
-            limit: 100,
-            name: characterSearch,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/characters`,
+          {
+            params: {
+              skip: 100 * (page - 1),
+              limit: 100,
+              name: characterSearch,
+            },
+          }
+        );
         setData(response);
         setTotalPages(Math.ceil(response.data.count / 100));
         setIsLoading(false);

@@ -13,13 +13,16 @@ export default function Comics({ token }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/comics`, {
-          params: {
-            skip: 100 * (page - 1),
-            limit: 100,
-            title: comicSearch,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/comics`,
+          {
+            params: {
+              skip: 100 * (page - 1),
+              limit: 100,
+              title: comicSearch,
+            },
+          }
+        );
         setData(response);
         setTotalPages(Math.ceil(response.data.count / 100));
         setIsLoading(false);

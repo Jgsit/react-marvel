@@ -12,7 +12,7 @@ export default function Personnage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/character/${id}`
+          `${import.meta.env.VITE_API_URL}/character/${id}`
         );
         setData(response);
         setIsLoading(false);
